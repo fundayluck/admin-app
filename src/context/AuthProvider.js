@@ -5,7 +5,6 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(() => {
     const localData = localStorage.getItem("auth");
-    console.log(localData);
     return localData ? JSON.parse(localData) : {};
   });
   useEffect(() => {
