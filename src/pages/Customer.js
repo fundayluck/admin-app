@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../ahooks/useAuth";
 import Api from "../api/Api";
+import ViewCustomers from "../components/customers/ViewCustomers";
 
 const CUSTOMERS_URL = "/customers";
 
@@ -8,7 +9,7 @@ const Customer = () => {
   const { auth } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  const [message, setMessage] = useState("");
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -19,7 +20,8 @@ const Customer = () => {
             Authorization: auth.access_token,
           },
         });
-        setMessage(response.data.message);
+
+        setData(response.data.data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -28,7 +30,19 @@ const Customer = () => {
     fetch();
   }, [auth.access_token]);
 
-  return <div>{loading ? "Loading..." : message}</div>;
+  return (
+    <div>
+      {loading ? (
+        <h1 className="flex justify-center text-xl underline">
+          Please Wait...
+        </h1>
+      ) : (
+        <div>
+          <ViewCustomers data={data} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Customer;

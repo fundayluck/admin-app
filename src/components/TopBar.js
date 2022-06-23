@@ -7,10 +7,6 @@ import { Menu, Transition } from "@headlessui/react";
 import useAuth from "../ahooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const Topbar = () => {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
@@ -60,14 +56,11 @@ const Topbar = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="w-full origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    className={classNames(
-                      active ? "bg-gray-100" : "",
-                      "block px-4 py-2 text-sm text-gray-700"
-                    )}
+                    className="block px-16 py-2 text-sm text-gray-700"
                     onClick={logout}
                   >
                     Sign out
@@ -77,7 +70,7 @@ const Topbar = () => {
             </Menu.Items>
           </Transition>
         </Menu>
-        <span className="ml-[4px] mt-[4px]">Jhon Doe</span>
+        {/*    */}
       </div>
     </div>
   );

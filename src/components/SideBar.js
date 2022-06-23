@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 const dataSidebar1 = [
   {
-    path: "/",
+    path: "/home",
     logo: <Home color="#B2B2B2" />,
   },
   {
